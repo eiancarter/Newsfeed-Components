@@ -112,3 +112,56 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function createArticle (title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleFirstParagraph = document.createElement('p');
+  const articleSecondParagraph = document.createElement('p');
+  const articleThirdParagraph = document.createElement('p');
+
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(articleFirstParagraph);
+  article.appendChild(articleSecondParagraph);
+  article.appendChild(articleThirdParagraph);
+  article.appendChild(expandButton);
+
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  articleFirstParagraph.classList.add('firstParagraph');
+  articleSecondParagraph.classList.add('secondParagraph');
+  articleThirdParagraph.classList.add('thirdParagraph');
+  articleExpandButton.classList.add('expandButton')
+
+  articleDate.textContent = date;
+  title.textContent = date;
+  firstParagraph.textContent = firstParagraph;
+  secondParagraph.textContent = secondParagraph;
+  thirdParagraph.textContent = thirdParagraph;
+
+  expandButton.addEventListener('click', event => {
+    article.classList.toggle('article-open')
+    console.log('button clicked', event.target)
+  })
+  return createArticle
+}
+
+// const newArticle = document.querySelector('.article');
+
+// newArticle.forEach(data => {
+//   articles.appendChild(createPanel(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+// })
+// Grabbing our container so we can append the card component to it.
+// const container = document.querySelector('.container');
+
+// 
+
+// // looping through our data to create multiple card components and appending to the container
+// cardData.forEach(data => {
+//   console.log('creating panel:', data.title)
+//   container.appendChild(createCard(data.title, data.subtitle, data.content, data.imgsrc))
+// })
+
+
