@@ -113,6 +113,12 @@ const data = [
 
 */
 
+const articleData = document.querySelector('.articles');
+data.forEach(element => {
+  articleData.appendChild(createArticle(element.title, element.date, element.firstParagraph, element.secondParagraph, element.thirdParagraph))
+})
+
+
 function createArticle (title, date, firstParagraph, secondParagraph, thirdParagraph) {
   const article = document.createElement('div');
   const articleTitle = document.createElement('h2');
@@ -120,6 +126,7 @@ function createArticle (title, date, firstParagraph, secondParagraph, thirdParag
   const articleFirstParagraph = document.createElement('p');
   const articleSecondParagraph = document.createElement('p');
   const articleThirdParagraph = document.createElement('p');
+  const expandButton = document.createElement('span');
 
   article.appendChild(articleTitle);
   article.appendChild(articleDate);
@@ -130,38 +137,26 @@ function createArticle (title, date, firstParagraph, secondParagraph, thirdParag
 
   article.classList.add('article');
   articleDate.classList.add('date');
-  articleFirstParagraph.classList.add('firstParagraph');
-  articleSecondParagraph.classList.add('secondParagraph');
-  articleThirdParagraph.classList.add('thirdParagraph');
-  articleExpandButton.classList.add('expandButton')
+  articleFirstParagraph.classList.add('content');
+  articleSecondParagraph.classList.add('content');
+  articleThirdParagraph.classList.add('content');
+  expandButton.classList.add('expandButton')
 
   articleDate.textContent = date;
-  title.textContent = date;
-  firstParagraph.textContent = firstParagraph;
-  secondParagraph.textContent = secondParagraph;
-  thirdParagraph.textContent = thirdParagraph;
+  articleTitle.textContent = title;
+  articleFirstParagraph.textContent = firstParagraph;
+  articleSecondParagraph.textContent = secondParagraph;
+  articleThirdParagraph.textContent = thirdParagraph;
+  expandButton.textContent = 'Expand';
 
   expandButton.addEventListener('click', event => {
     article.classList.toggle('article-open')
     console.log('button clicked', event.target)
   })
-  return createArticle
+  return article
 }
+console.log(createArticle());
 
-// const newArticle = document.querySelector('.article');
-
-// newArticle.forEach(data => {
-//   articles.appendChild(createPanel(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
-// })
-// Grabbing our container so we can append the card component to it.
-// const container = document.querySelector('.container');
-
-// 
-
-// // looping through our data to create multiple card components and appending to the container
-// cardData.forEach(data => {
-//   console.log('creating panel:', data.title)
-//   container.appendChild(createCard(data.title, data.subtitle, data.content, data.imgsrc))
-// })
-
-
+data.map(element => {
+  document.querySelector(".articles").appendChild(createArticle(element));
+});
