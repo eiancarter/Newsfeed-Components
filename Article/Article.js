@@ -112,3 +112,51 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+const articleData = document.querySelector('.articles');
+data.forEach(element => {
+  articleData.appendChild(createArticle(element.title, element.date, element.firstParagraph, element.secondParagraph, element.thirdParagraph))
+})
+
+
+function createArticle (title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleFirstParagraph = document.createElement('p');
+  const articleSecondParagraph = document.createElement('p');
+  const articleThirdParagraph = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(articleFirstParagraph);
+  article.appendChild(articleSecondParagraph);
+  article.appendChild(articleThirdParagraph);
+  article.appendChild(expandButton);
+
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  articleFirstParagraph.classList.add('content');
+  articleSecondParagraph.classList.add('content');
+  articleThirdParagraph.classList.add('content');
+  expandButton.classList.add('expandButton')
+
+  articleDate.textContent = date;
+  articleTitle.textContent = title;
+  articleFirstParagraph.textContent = firstParagraph;
+  articleSecondParagraph.textContent = secondParagraph;
+  articleThirdParagraph.textContent = thirdParagraph;
+  expandButton.textContent = 'Expand';
+
+  expandButton.addEventListener('click', event => {
+    article.classList.toggle('article-open')
+    console.log('button clicked', event.target)
+  })
+  return article
+}
+console.log(createArticle());
+
+data.map(element => {
+  document.querySelector(".articles").appendChild(createArticle(element));
+});
